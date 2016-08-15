@@ -6,43 +6,41 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.SearchCriteria;
+import org.zerock.mapper.BoardMapper;
 
-//@Repository
-public class BoardDAOImpl implements BoardDAO {
+@Repository
+public class BoardDAOImpl2 implements BoardDAO {
 
   @Inject
-  private SqlSession session;
-
-  private static String namespace = "org.zerock.mapper.BoardMapper";
+  private BoardMapper mapper;
 
   @Override
   public void create(BoardVO vo) throws Exception {
-    session.insert(namespace + ".create", vo);
+    mapper.create(vo);
   }
 
   @Override
   public BoardVO read(Integer bno) throws Exception {
-    return session.selectOne(namespace + ".read", bno);
+    return mapper.read(bno);
   }
 
   @Override
   public void update(BoardVO vo) throws Exception {
-    session.update(namespace + ".update", vo);
+    mapper.update(vo);
   }
 
   @Override
   public void delete(Integer bno) throws Exception {
-    session.delete(namespace + ".delete", bno);
+    mapper.delete(bno);
   }
 
   @Override
   public List<BoardVO> listAll() throws Exception {
-    return session.selectList(namespace + ".listAll");
+    return mapper.listAll();
   }
 
   @Override
@@ -54,31 +52,31 @@ public class BoardDAOImpl implements BoardDAO {
 
     page = (page - 1) * 10;
 
-    return session.selectList(namespace + ".listPage", page);
+    return mapper.listPage(page);
   }
 
   @Override
   public List<BoardVO> listCriteria(Criteria cri) throws Exception {
 
-    return session.selectList(namespace + ".listCriteria", cri);
+    return mapper.listCriteria(cri);
   }
 
   @Override
   public int countPaging(Criteria cri) throws Exception {
 
-    return session.selectOne(namespace + ".countPaging", cri);
+    return mapper.countPaging(cri);
   }
 
   @Override
   public List<BoardVO> listSearch(SearchCriteria cri) throws Exception {
 
-    return session.selectList(namespace + ".listSearch", cri);
+    return mapper.listSearch(cri);
   }
 
   @Override
   public int listSearchCount(SearchCriteria cri) throws Exception {
 
-    return session.selectOne(namespace + ".listSearchCount", cri);
+    return mapper.listSearchCount(cri);
   }
 
   @Override
@@ -89,13 +87,13 @@ public class BoardDAOImpl implements BoardDAO {
     paramMap.put("bno", bno);
     paramMap.put("amount", amount);
 
-    session.update(namespace + ".updateReplyCnt", paramMap);
+    mapper.updateReplyCnt(bno, amount);
   }
 
   @Override
   public void updateViewCnt(Integer bno) throws Exception {
     
-    session.update(namespace+".updateViewCnt", bno);
+    mapper.updateViewCnt(bno);
     
   }
 
@@ -103,21 +101,21 @@ public class BoardDAOImpl implements BoardDAO {
   @Override
   public void addAttach(String fullName) throws Exception {
     
-    session.insert(namespace+".addAttach", fullName);
+    mapper.addAttach(fullName);
     
   }
   
   @Override
   public List<String> getAttach(Integer bno) throws Exception {
     
-    return session.selectList(namespace +".getAttach", bno);
+    return mapper.getAttach(bno);
   }
  
 
   @Override
   public void deleteAttach(Integer bno) throws Exception {
 
-    session.delete(namespace+".deleteAttach", bno);
+    mapper.deleteAttach(bno);
     
   }
 
@@ -129,7 +127,7 @@ public class BoardDAOImpl implements BoardDAO {
     paramMap.put("bno", bno);
     paramMap.put("fullName", fullName);
     
-    session.insert(namespace+".replaceAttach", paramMap);
+    mapper.replaceAttach(fullName, bno);
     
   }
 

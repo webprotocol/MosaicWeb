@@ -44,7 +44,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 					session.setAttribute("login", userVO);
 					return true;
 				}
-
 			}
 
 			response.sendRedirect("/user/login");
