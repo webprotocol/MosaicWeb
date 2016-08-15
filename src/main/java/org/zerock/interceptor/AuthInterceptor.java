@@ -15,80 +15,79 @@ import org.zerock.service.UserService;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
-  private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
-  
-  @Inject
-  private UserService service;
-  
-  @Override
-  public boolean preHandle(HttpServletRequest request,
-      HttpServletResponse response, Object handler) throws Exception {
-    
-    HttpSession session = request.getSession();   
+	private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
 
+	@Inject
+	private UserService service;
 
-    if(session.getAttribute("login") == null){
-    
-      logger.info("current user is not logined");
-      
-      saveDest(request);
-      
-      Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
-      
-      if(loginCookie != null) { 
-        
-        UserVO userVO = service.checkLoginBefore(loginCookie.getValue());
-        
-        logger.info("USERVO: " + userVO);
-        
-        if(userVO != null){
-          session.setAttribute("login", userVO);
-          return true;
-        }
-        
-      }
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
 
-      response.sendRedirect("/user/login");
-      return false;
-    }
-    return true;
-  }  
-  
+		HttpSession session = request.getSession();
 
-  private void saveDest(HttpServletRequest req) {
+		if (session.getAttribute("login") == null) {
 
-    String uri = req.getRequestURI();
+			logger.info("current user is not logined");
 
-    String query = req.getQueryString();
+			saveDest(request);
 
-    if (query == null || query.equals("null")) {
-      query = "";
-    } else {
-      query = "?" + query;
-    }
+			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
 
-    if (req.getMethod().equals("GET")) {
-      logger.info("dest: " + (uri + query));
-      req.getSession().setAttribute("dest", uri + query);
-    }
-  }
+			if (loginCookie != null) {
 
-//  @Override
-//  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-//
-//    HttpSession session = request.getSession();
-//
-//    if (session.getAttribute("login") == null) {
-//
-//      logger.info("current user is not logined");
-//
-//      saveDest(request);
-//      
-//      response.sendRedirect("/user/login");
-//      return false;
-//    }
-//    return true;
-//  }
+				UserVO userVO = service.checkLoginBefore(loginCookie.getValue());
+
+				logger.info("USERVO: " + userVO);
+
+				if (userVO != null) {
+					session.setAttribute("login", userVO);
+					return true;
+				}
+
+			}
+
+			response.sendRedirect("/user/login");
+			return false;
+		}
+		return true;
+	}
+
+	private void saveDest(HttpServletRequest req) {
+
+		String uri = req.getRequestURI();
+
+		String query = req.getQueryString();
+
+		if (query == null || query.equals("null")) {
+			query = "";
+		} else {
+			query = "?" + query;
+		}
+
+		if (req.getMethod().equals("GET")) {
+			logger.info("dest: " + (uri + query));
+			req.getSession().setAttribute("dest", uri + query);
+		}
+	}
+
+	// @Override
+	// public boolean preHandle(HttpServletRequest request, HttpServletResponse
+	// response, Object handler) throws Exception {
+	//
+	// HttpSession session = request.getSession();
+	//
+	// if (session.getAttribute("login") == null) {
+	//
+	// logger.info("current user is not logined");
+	//
+	// saveDest(request);
+	//
+	// response.sendRedirect("/user/login");
+	// return false;
+	// }
+	// return true;
+	// }
 }
 
 // if(session.getAttribute("login") == null){

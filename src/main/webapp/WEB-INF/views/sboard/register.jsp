@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>template.jsp</title>
 
 <style>
 .fileDrop {
@@ -11,6 +16,9 @@
   
 }
 </style>
+
+</head>
+<body>
 
 <!-- Main content -->
 <section class="content">
@@ -146,4 +154,6 @@ $("#registerForm").submit(function(event){
 
 </script>
 
+</body>
+</html>
  
