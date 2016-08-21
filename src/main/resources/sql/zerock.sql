@@ -1,9 +1,16 @@
 --
+-- DROP table
+--
+DROP TABLE tbl_member;
+DROP TABLE tbl_user;
+
+DROP TABLE tbl_attach;
+DROP TABLE tbl_reply;
+DROP TABLE tbl_board;
+
+--
 -- tbl_member
 --
-
-DROP TABLE tbl_member;
-
 CREATE TABLE tbl_member
 (
    userid       VARCHAR(50) NOT NULL,
@@ -18,8 +25,6 @@ CREATE TABLE tbl_member
 --
 -- tbl_user
 --
-DROP TABLE tbl_user;
-
 CREATE TABLE tbl_user
 (
    uid            VARCHAR(50) NOT NULL,
@@ -31,9 +36,6 @@ CREATE TABLE tbl_user
    PRIMARY KEY(uid)
 );
 
-
-
-SELECT * FROM tbl_user;
 
 INSERT INTO tbl_user(UID, upw, uname)
      VALUES ('user00', 'user00', 'IRON MAN');
@@ -49,11 +51,10 @@ INSERT INTO tbl_user(UID, upw, uname)
 
 
 
+
 --
 -- tbl_board
 --
-DROP TABLE tbl_board;
-
 CREATE TABLE tbl_board
 (
    bno        int NOT NULL AUTO_INCREMENT,
@@ -66,14 +67,9 @@ CREATE TABLE tbl_board
    PRIMARY KEY(bno)
 );
 
-
-
 --
 -- tbl_reply
 --
-
-DROP TABLE tbl_reply;
-
 CREATE TABLE tbl_reply
 (
    rno          int NOT NULL AUTO_INCREMENT,
@@ -85,16 +81,12 @@ CREATE TABLE tbl_reply
    PRIMARY KEY(rno)
 );
 
-
 ALTER TABLE tbl_reply
-   ADD CONSTRAINT fk_board FOREIGN KEY(bno) REFERENCES tbl_board(bno);
+  ADD CONSTRAINT fk_board_reply FOREIGN KEY(bno) REFERENCES tbl_board(bno);
 
-select * from tbl_reply;
 --
--- tbl_reply
+-- tbl_attach
 --
-DROP TABLE tbl_attach;
-
 CREATE TABLE tbl_attach
 (
    fullName   VARCHAR(150) NOT NULL,
@@ -104,4 +96,4 @@ CREATE TABLE tbl_attach
 );
 
 ALTER TABLE tbl_attach
-   ADD CONSTRAINT fk_borad_attach FOREIGN KEY(bno) REFERENCES tbl_board(bno);
+  ADD CONSTRAINT fk_borad_attach FOREIGN KEY(bno) REFERENCES tbl_board(bno);
