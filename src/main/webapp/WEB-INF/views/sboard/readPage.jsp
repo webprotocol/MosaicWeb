@@ -263,10 +263,7 @@
 
 		}
 
-		var bno = $
-		{
-			boardVO.bno
-		};
+		var bno = ${boardVO.bno};
 
 		var replyPage = 1;
 
@@ -468,10 +465,7 @@
 						formObj.submit();
 					});
 
-					var bno = $
-					{
-						boardVO.bno
-					}
+					var bno = ${boardVO.bno}
 					;
 					var template = Handlebars.compile($("#templateAttach")
 							.html());

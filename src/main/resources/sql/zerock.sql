@@ -72,10 +72,11 @@ CREATE TABLE tbl_board
 -- tbl_reply
 --
 
+DROP TABLE tbl_reply;
 
 CREATE TABLE tbl_reply
 (
-   rno          int NOT NULL,
+   rno          int NOT NULL AUTO_INCREMENT,
    bno          int NOT NULL DEFAULT 0,
    replytext    varchar(1000) NOT NULL,
    replyer      varchar(50) NOT NULL,
@@ -88,6 +89,7 @@ CREATE TABLE tbl_reply
 ALTER TABLE tbl_reply
    ADD CONSTRAINT fk_board FOREIGN KEY(bno) REFERENCES tbl_board(bno);
 
+select * from tbl_reply;
 --
 -- tbl_reply
 --

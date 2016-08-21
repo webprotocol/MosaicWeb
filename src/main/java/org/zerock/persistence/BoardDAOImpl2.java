@@ -12,7 +12,7 @@ import org.zerock.domain.Criteria;
 import org.zerock.domain.SearchCriteria;
 import org.zerock.mapper.BoardMapper;
 
-@Repository
+//@Repository
 public class BoardDAOImpl2 implements BoardDAO {
 
   @Inject

@@ -12,7 +12,7 @@ import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.SearchCriteria;
 
-//@Repository
+@Repository
 public class BoardDAOImpl implements BoardDAO {
 
   @Inject

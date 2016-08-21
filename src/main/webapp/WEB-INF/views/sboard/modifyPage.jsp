@@ -203,10 +203,7 @@
 									});
 								});
 
-						var bno = $
-						{
-							boardVO.bno
-						};
+						var bno = ${boardVO.bno};
 						var template = Handlebars
 								.compile($("#template").html());
 
@@ -247,9 +244,6 @@
 
 						});
 					</script>
-
-
-
 
 
 				</div>
