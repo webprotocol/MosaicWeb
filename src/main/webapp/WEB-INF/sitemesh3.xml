@@ -19,7 +19,7 @@
 <!--   </mapping> -->
 
   <!-- Exclude path from decoration. -->
-  <mapping path="/index.jsp" exclue="true"/>
+  <mapping path="/study/**" exclue="true"/>
 <!--   <mapping path="/brochures/*" exclue="true"/> -->
 
 </sitemesh>

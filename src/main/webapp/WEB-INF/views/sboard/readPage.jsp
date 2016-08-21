@@ -42,7 +42,6 @@
 </head>
 <body>
 
-
 	<div class='popup back' style="display: none;"></div>
 	<div id="popup_front" class='popup front' style="display: none;">
 		<img id="popup_img">
@@ -61,9 +60,9 @@
 
 					<form role="form" action="modifyPage" method="post">
 
-						<input type='hidden' name='bno' value="${boardVO.bno}"> <input
-							type='hidden' name='page' value="${cri.page}"> <input
-							type='hidden' name='perPageNum' value="${cri.perPageNum}">
+						<input type='hidden' name='bno' value="${boardVO.bno}"> 
+						<input type='hidden' name='page' value="${cri.page}"> 
+						<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
 						<input type='hidden' name='searchType' value="${cri.searchType}">
 						<input type='hidden' name='keyword' value="${cri.keyword}">
 
@@ -71,18 +70,17 @@
 
 					<div class="box-body">
 						<div class="form-group">
-							<label for="exampleInputEmail1">Title</label> <input type="text"
-								name='title' class="form-control" value="${boardVO.title}"
+							<label for="exampleInputEmail1">Title</label> 
+							<input type="text" name='title' class="form-control" value="${boardVO.title}"
 								readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">Content</label>
-							<textarea class="form-control" name="content" rows="3"
-								readonly="readonly">${boardVO.content}</textarea>
+							<textarea class="form-control" name="content" rows="3" readonly="readonly">${boardVO.content}</textarea>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputEmail1">Writer</label> <input type="text"
-								name="writer" class="form-control" value="${boardVO.writer}"
+							<label for="exampleInputEmail1">Writer</label> 
+							<input type="text" name="writer" class="form-control" value="${boardVO.writer}"
 								readonly="readonly">
 						</div>
 					</div>
@@ -96,12 +94,12 @@
 
 						<ul class="mailbox-attachments clearfix uploadedList">
 						</ul>
+						
 						<c:if test="${login.uid == boardVO.writer}">
 							<button type="submit" class="btn btn-warning" id="modifyBtn">Modify</button>
 							<button type="submit" class="btn btn-danger" id="removeBtn">REMOVE</button>
 						</c:if>
-						<button type="submit" class="btn btn-primary" id="goListBtn">GO
-							LIST</button>
+						<button type="submit" class="btn btn-primary" id="goListBtn">GO	LIST</button>
 					</div>
 
 				</div>
@@ -112,33 +110,24 @@
 		</div>
 		<!-- /.row -->
 
-
-
 		<div class="row">
 			<div class="col-md-12">
-
 
 				<div class="box box-success">
 					<div class="box-header">
 						<h3 class="box-title">ADD NEW REPLY</h3>
 					</div>
 
-
-
-
 					<c:if test="${not empty login}">
 						<div class="box-body">
-							<label for="exampleInputEmail1">Writer</label> <input
-								class="form-control" type="text" placeholder="USER ID"
-								id="newReplyWriter" value="${login.uid }" readonly="readonly">
-							<label for="exampleInputEmail1">Reply Text</label> <input
-								class="form-control" type="text" placeholder="REPLY TEXT"
-								id="newReplyText">
+							<label for="exampleInputEmail1">Writer</label> 
+							<input class="form-control" type="text" placeholder="USER ID" id="newReplyWriter" value="${login.uid }" readonly="readonly">
+							<label for="exampleInputEmail1">Reply Text</label> 
+							<input class="form-control" type="text" placeholder="REPLY TEXT" id="newReplyText">
 						</div>
 
 						<div class="box-footer">
-							<button type="submit" class="btn btn-primary" id="replyAddBtn">ADD
-								REPLY</button>
+							<button type="submit" class="btn btn-primary" id="replyAddBtn">ADD REPLY</button>
 						</div>
 					</c:if>
 
@@ -151,15 +140,12 @@
 					</c:if>
 				</div>
 
-
-
 				<!-- The time line -->
 				<ul class="timeline">
 					<!-- timeline time label -->
-					<li class="time-label" id="repliesDiv"><span class="bg-green">
-							Replies List <small id='replycntSmall'> [
-								${boardVO.replycnt} ] </small>
-					</span></li>
+					<li class="time-label" id="repliesDiv">
+						<span class="bg-green">	Replies List [<small id='replycntSmall'>${boardVO.replycnt}</small>]</span>
+					</li>
 				</ul>
 
 				<div class='text-center'>
@@ -172,8 +158,6 @@
 			<!-- /.col -->
 		</div>
 		<!-- /.row -->
-
-
 
 		<!-- Modal -->
 		<div id="modifyModal" class="modal modal-primary fade" role="dialog">
@@ -198,45 +182,48 @@
 			</div>
 		</div>
 
-
 	</section>
 	<!-- /.content -->
 
 
 	<script id="templateAttach" type="text/x-handlebars-template">
-<li data-src='{{fullName}}'>
-  <span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
-  <div class="mailbox-attachment-info">
-	<a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
-	</span>
-  </div>
-</li>                
-</script>
-
-
+		<li data-src='{{fullName}}'>
+  			<span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
+  			<div class="mailbox-attachment-info">
+				<a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a></span>
+  			</div>
+		</li>                
+	</script>
 
 	<script id="template" type="text/x-handlebars-template">
-				{{#each .}}
-	         <li class="replyLi" data-rno={{rno}}>
-             <i class="fa fa-comments bg-blue"></i>
-             <div class="timeline-item" >
-                <span class="time">
-                  <i class="fa fa-clock-o"></i>{{prettifyDate regdate}}
-                </span>
+		{{#each .}}
+	        <li class="replyLi" data-rno={{rno}}>
+            	<i class="fa fa-comments bg-blue"></i>
+            	<div class="timeline-item" >
+                	<span class="time">
+                  	<i class="fa fa-clock-o"></i>{{prettifyDate regdate}}
+                	</span>
                 <h3 class="timeline-header"><strong>{{rno}}</strong> -{{replyer}}</h3>
                 <div class="timeline-body">{{replytext}} </div>
-								<div class="timeline-footer">
-								{{#eqReplyer replyer }}
-                  <a class="btn btn-primary btn-xs" 
-									data-toggle="modal" data-target="#modifyModal">Modify</a>
-								{{/eqReplyer}}
-							  </div>
+				<div class="timeline-footer">
+					{{#eqReplyer replyer }}
+                  		<a class="btn btn-primary btn-xs"data-toggle="modal" data-target="#modifyModal">Modify</a>
+					{{/eqReplyer}}
+				</div>
 	            </div>			
-           </li>
+        	</li>
         {{/each}}
-</script>
+	</script>
 
 	<script>
+		$(".timeline").on("click", ".replyLi", function(event) {
+			var reply = $(this);
+
+			$("#replytext").val(reply.find('.timeline-body').text());
+			$(".modal-title").html(reply.attr("data-rno"));
+
+		});
+
 		Handlebars.registerHelper("eqReplyer", function(replyer, block) {
 			var accum = '';
 			if (replyer == '${login.uid}') {
@@ -247,25 +234,25 @@
 
 		Handlebars.registerHelper("prettifyDate", function(timeValue) {
 			var dateObj = new Date(timeValue);
+			
 			var year = dateObj.getFullYear();
 			var month = dateObj.getMonth() + 1;
 			var date = dateObj.getDate();
+			
 			return year + "/" + month + "/" + date;
 		});
 
-		var printData = function(replyArr, target, templateObject) {
-
-			var template = Handlebars.compile(templateObject.html());
-
-			var html = template(replyArr);
-			$(".replyLi").remove();
-			target.after(html);
-
-		}
 
 		var bno = ${boardVO.bno};
-
 		var replyPage = 1;
+
+		$("#repliesDiv").on("click", function() {
+			if ($(".timeline li").size() > 1) {
+				return;
+			}
+			getPage("/replies/" + bno + "/1");
+
+		});
 
 		function getPage(pageInfo) {
 
@@ -274,55 +261,53 @@
 				printPaging(data.pageMaker, $(".pagination"));
 
 				$("#modifyModal").modal('hide');
-				$("#replycntSmall").html(
-						"[ " + data.pageMaker.totalCount + " ]");
-
+				$("#replycntSmall").html(data.pageMaker.totalCount);
 			});
 		}
 
+		var printData = function(replyArr, target, templateObject) {
+
+			var template = Handlebars.compile(templateObject.html());
+
+			var html = template(replyArr);
+			$(".replyLi").remove();
+
+			target.after(html);
+		}
+		
 		var printPaging = function(pageMaker, target) {
 
 			var str = "";
 
 			if (pageMaker.prev) {
-				str += "<li><a href='" + (pageMaker.startPage - 1)
-						+ "'> << </a></li>";
+				str += "<li><a href='" + (pageMaker.startPage - 1) + "'> << </a></li>";
 			}
 
 			for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++) {
-				var strClass = pageMaker.cri.page == i ? 'class=active' : '';
+				var strClass = pageMaker.cri.page == i ? 'class="active"' : '';
 				str += "<li "+strClass+"><a href='"+i+"'>" + i + "</a></li>";
 			}
 
 			if (pageMaker.next) {
-				str += "<li><a href='" + (pageMaker.endPage + 1)
-						+ "'> >> </a></li>";
+				str += "<li><a href='" + (pageMaker.endPage + 1) + "'> >> </a></li>";
 			}
 
 			target.html(str);
 		};
 
-		$("#repliesDiv").on("click", function() {
-
-			if ($(".timeline li").size() > 1) {
-				return;
-			}
-			getPage("/replies/" + bno + "/1");
-
-		});
 
 		$(".pagination").on("click", "li a", function(event) {
 
 			event.preventDefault();
 
 			replyPage = $(this).attr("href");
-
 			getPage("/replies/" + bno + "/" + replyPage);
 
 		});
 
 		$("#replyAddBtn").on("click", function() {
-			alert("#replyAddBtn")
+			console.log("#replyAddBtn clicked...");
+			
 			var replyerObj = $("#newReplyWriter");
 			var replytextObj = $("#newReplyText");
 			var replyer = replyerObj.val();
@@ -346,7 +331,9 @@
 					if (result == 'SUCCESS') {
 						alert("등록 되었습니다.");
 						replyPage = 1;
+						
 						getPage("/replies/" + bno + "/" + replyPage);
+						
 						replyerObj.val("");
 						replytextObj.val("");
 					}
@@ -354,14 +341,6 @@
 			});
 		});
 
-		$(".timeline").on("click", ".replyLi", function(event) {
-
-			var reply = $(this);
-
-			$("#replytext").val(reply.find('.timeline-body').text());
-			$(".modal-title").html(reply.attr("data-rno"));
-
-		});
 
 		$("#replyModBtn").on("click", function() {
 
@@ -383,6 +362,7 @@
 					console.log("result: " + result);
 					if (result == 'SUCCESS') {
 						alert("수정 되었습니다.");
+						
 						getPage("/replies/" + bno + "/" + replyPage);
 					}
 				}
@@ -436,6 +416,7 @@
 					$("#removeBtn").on("click", function() {
 
 						var replyCnt = $("#replycntSmall").html();
+						alert("count = " + replyCnt);
 
 						if (replyCnt > 0) {
 							alert("댓글이 달린 게시물을 삭제할 수 없습니다.");
@@ -465,10 +446,9 @@
 						formObj.submit();
 					});
 
-					var bno = ${boardVO.bno}
-					;
-					var template = Handlebars.compile($("#templateAttach")
-							.html());
+					var bno = ${boardVO.bno};
+					
+					var template = Handlebars.compile($("#templateAttach").html());
 
 					$.getJSON("/sboard/getAttach/" + bno, function(list) {
 						$(list).each(function() {
@@ -482,11 +462,9 @@
 						});
 					});
 
-					$(".uploadedList").on("click",
-							".mailbox-attachment-info a", function(event) {
+					$(".uploadedList").on("click", ".mailbox-attachment-info a", function(event) {
 
 								var fileLink = $(this).attr("href");
-
 								if (checkImageType(fileLink)) {
 
 									event.preventDefault();
