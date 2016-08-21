@@ -8,8 +8,7 @@
 <meta charset="UTF-8">
 <title>readPage.jsp</title>
 <script type="text/javascript" src="/resources/js/upload.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <!-- Main content -->
 <style type="text/css">
 .popup {
